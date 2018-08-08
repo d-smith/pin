@@ -1,0 +1,19 @@
+service: makepin
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  runtime: nodejs8.10
+#  apiKeys:
+#    - callback-${opt:stage, self:provider.stage}
+#  usagePlan:
+#    throttle:
+#      burstLimit: 10
+#      rateLimit: 5
+
+functions:
+  pin:
+    handler: pin.makepin
+    events:
+      - http: POST makepin
+
